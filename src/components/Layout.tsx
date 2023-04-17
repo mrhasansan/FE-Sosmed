@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Header } from "./Header";
+import { Content } from "./Content";
 export function Layout() {
   return (
     <Box
@@ -26,8 +27,8 @@ export function Layout() {
       <Box gridArea="left" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>
         Right
       </Box>
-      <Box gridArea="content" bg="white" p={4}>
-        Content
+      <Box gridArea="content" bg="white">
+        <Content />
       </Box>
       <Box gridArea="right" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>
         Left

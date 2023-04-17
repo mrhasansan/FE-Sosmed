@@ -4,13 +4,17 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { ErrorPage } from "./pages/ErrorPage";
+import { Login } from "./pages/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="*" element={<ErrorPage />} />
-    </Route>
+    <>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+    </>
   )
 );
 function App() {
