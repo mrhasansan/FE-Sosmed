@@ -2,21 +2,35 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "./components/Layout";
-import { Home } from "./pages/Home";
+import { Register } from "./pages/Register";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Login } from "./pages/Login";
+import { Profile } from "./pages/Profile";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Route>
-    </>
-  )
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [],
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "register",
+    element: <Register />,
+  },
+  {
+    path: "profile",
+    element: <Profile />,
+  },
+  {
+    path: "register",
+    element: <Register />,
+  },
+]);
 function App() {
   return (
     <ChakraProvider>

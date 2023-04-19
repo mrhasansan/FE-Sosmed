@@ -23,22 +23,22 @@ export function Header() {
         <GridItem w="100%" h="10" display={{ base: "none", md: "block" }}>
           <Box bg="transparant" h="100%" w="100%" display="flex" alignItems="center" justifyContent="space-between">
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <FaHome size={28} />
               </Link>
             </Button>
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <FaYoutube size={28} />
               </Link>
             </Button>
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <AiOutlineShop size={28} />
               </Link>
             </Button>
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/profile">
                 <FaUsers size={28} />
               </Link>
             </Button>
@@ -47,18 +47,18 @@ export function Header() {
         <GridItem w="100%" h="10">
           <Box bg="transparant" h="100%" w="100%" display="flex" alignItems="center" justifyContent="space-between">
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <AiOutlinePlus size={28} />
               </Link>
             </Button>
 
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <FaFacebookMessenger size={28} />
               </Link>
             </Button>
             <Button bg="transparant">
-              <Link to="/home">
+              <Link to="/">
                 <FaBell size={28} />
               </Link>
             </Button>
@@ -68,7 +68,9 @@ export function Header() {
               </MenuButton>
               <MenuList>
                 <MenuGroup title="Profile">
-                  <MenuItem>My Account</MenuItem>
+                  <MenuItem>
+                    <Link to="/profile">My Account</Link>
+                  </MenuItem>
                   <MenuItem>Payments </MenuItem>
                 </MenuGroup>
                 <MenuDivider />

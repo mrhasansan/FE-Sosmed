@@ -1,3 +1,5 @@
-export function Login() {
-  return <div>Login</div>;
+import { Box, Image, Text } from "@chakra-ui/react";
+
+export function Profile() {
+  return <div>Profile</div>;
 }

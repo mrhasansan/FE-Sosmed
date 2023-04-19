@@ -1,9 +1,39 @@
-import { Grid, GridItem, Box, FormControl, FormLabel, Input, Button, Stack, Text, Container, Divider } from "@chakra-ui/react";
-import { AiFillPlusCircle } from "react-icons/ai";
+import { Grid, GridItem, Box, FormControl, FormLabel, Input, Button, Stack, Text, Container, Divider, Modal, ModalOverlay, ModalBody, ModalHeader, ModalContent, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Register } from "./Register";
+
+interface RegisterFormProps {
+  email: string;
+  password: string;
+}
 
 export function Login() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData: RegisterFormProps = {
+      email,
+      password,
+    };
+    console.log(formData);
+    // lakukan pengiriman data ke server atau proses selanjutnya
+  };
+
   return (
-    <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} gap={6} bg="#F0F2F5">
+    <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} gap={6} bg="#F0F2F5" h="100%">
       <GridItem height="auto">
         <Box maxW={{ base: "md", md: "lg", lg: "2xl" }} mx="auto" mt={8} p={{ base: 4, md: 6, lg: 8 }} borderRadius={8}>
           <Container bg="transparant" borderRadius="md" padding="6" textAlign="justify">
@@ -19,24 +49,36 @@ export function Login() {
       <GridItem height="auto">
         <Box maxW={{ base: "md", md: "lg", lg: "xl" }} mx="auto" mt={6} p={{ base: 4, md: 6, lg: 8 }}>
           <Stack spacing={4} padding="8" bg="white" borderWidth={1} borderRadius={8}>
-            <FormControl id="email">
-              <FormLabel>Email</FormLabel>
-              <Input type="email" placeholder="Masukkan alamat email Anda" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Kata Sandi</FormLabel>
-              <Input type="password" placeholder="Masukkan kata sandi Anda" />
-            </FormControl>
-            <Button colorScheme="blue" size="lg" w="100%">
-              Log in
-            </Button>
+            <form onSubmit={handleSubmit}>
+              <FormControl isRequired mt={3}>
+                <FormLabel htmlFor="email">Email:</FormLabel>
+                <Input type="email" id="email" placeholder="Email Address" value={email} onChange={handleEmailChange} />
+              </FormControl>
+              <FormControl isRequired mt={3}>
+                <FormLabel htmlFor="password">Password:</FormLabel>
+                <Input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+              </FormControl>
+              <Button type="submit" mt={5} colorScheme="blue" size="lg" w="100%">
+                <NavLink to="/">Log in</NavLink>
+              </Button>
+            </form>
             <Divider orientation="horizontal" />
-            <Button colorScheme="green" size="lg" w="100%">
+            <Button colorScheme="green" size="lg" w="100%" onClick={onOpen}>
               Create New Account
             </Button>
           </Stack>
         </Box>
       </GridItem>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create New Account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Register />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Grid>
   );
 }
