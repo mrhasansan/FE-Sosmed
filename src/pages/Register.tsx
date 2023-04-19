@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { API_URL } from "../Helper";
+import Axios from "axios";
 
 interface RegisterFormProps {
   userName: string;
@@ -9,7 +11,6 @@ interface RegisterFormProps {
 
 export function Register() {
   const [userName, setuserName] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,12 +30,23 @@ export function Register() {
     event.preventDefault();
     const formData: RegisterFormProps = {
       userName,
-
       email,
       password,
     };
     console.log(formData);
     // lakukan pengiriman data ke server atau proses selanjutnya
+    Axios.post(API_URL + `/users/register`, {
+      userName,
+      email,
+      password,
+    })
+      .then((response) => {
+        console.log(response.data);
+        alert(`Registration success then ckeck your email to verifi `);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
