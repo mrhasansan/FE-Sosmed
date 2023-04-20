@@ -12,9 +12,9 @@ export function Header() {
   };
   return (
     <div>
-      <Grid templateColumns="1fr 2fr 1fr">
+      <Grid templateColumns="1fr 2fr 1fr" bg="white">
         <GridItem w="100%" h="10">
-          <Box bg="transparant" h="100%" w="100%" display="flex" alignItems="center" justifyContent="start">
+          <Box bg="white" h="100%" w="100%" display="flex" alignItems="center" justifyContent="start">
             <FaFacebook size={28} color="#1877F2" />
             <IconButton aria-label="Search" icon={<AiOutlineSearch />} onClick={handleClick} bg="transparant" />
             {showInput || <Input type="text" placeholder="Search ..." marginLeft={2} marginRight={2} />}

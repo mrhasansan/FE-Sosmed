@@ -27,7 +27,7 @@ export function Layout() {
       <Box gridArea="left" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>
         Right
       </Box>
-      <Box gridArea="content" bg="white">
+      <Box gridArea="content" bg="#F0F2F5">
         <Content />
       </Box>
       <Box gridArea="right" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>

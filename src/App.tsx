@@ -6,29 +6,32 @@ import { Register } from "./pages/Register";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
+import { Post } from "./pages/Post";
+import { Chat } from "./pages/Chat";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: [],
-  },
-  {
-    path: "login",
     element: <Login />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "home",
+    element: <Layout />,
+    children: [
+      {
+        path: "post",
+        element: <Post />,
+      },
+    ],
   },
   {
     path: "profile",
     element: <Profile />,
-  },
-  {
-    path: "register",
-    element: <Register />,
   },
 ]);
 function App() {

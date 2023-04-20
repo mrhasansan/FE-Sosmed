@@ -10,7 +10,6 @@ interface RegisterFormProps {
 
 export function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -59,7 +58,7 @@ export function Login() {
                 <Input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
               </FormControl>
               <Button type="submit" mt={5} colorScheme="blue" size="lg" w="100%">
-                <NavLink to="/">Log in</NavLink>
+                <NavLink to="/home">Log in</NavLink>
               </Button>
             </form>
             <Divider orientation="horizontal" />
