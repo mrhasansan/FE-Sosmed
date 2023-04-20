@@ -23,7 +23,7 @@ export function Header() {
         <GridItem w="100%" h="10" display={{ base: "none", md: "block" }}>
           <Box bg="transparant" h="100%" w="100%" display="flex" alignItems="center" justifyContent="space-between">
             <Button bg="transparant">
-              <Link to="/">
+              <Link to="/home">
                 <FaHome size={28} />
               </Link>
             </Button>

@@ -7,9 +7,9 @@ export function Content(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box display="flex" alignItems="center" justifyContent="center" m={3}>
-        <Avatar />
-        <Button onClick={onOpen} w="100%" p="12px">
+      <Box display="flex" alignItems="center" justifyContent="center" p={3} bg="white" boxShadow="lg" borderRadius="lg" overflow="hidden">
+        <Avatar margin="10px" />
+        <Button onClick={onOpen} w="100%" borderRadius="full">
           Create Post
         </Button>
       </Box>
@@ -24,7 +24,7 @@ export function Content(): JSX.Element {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Card w={{ base: "90%", lg: "100%" }} h="auto" boxShadow="lg" borderRadius="lg" overflow="hidden">
+      <Card h="auto" boxShadow="lg" borderRadius="lg" overflow="hidden" p={3}>
         <CardHeader>
           <Flex>
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">

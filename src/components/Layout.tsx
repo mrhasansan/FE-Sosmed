@@ -1,6 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import { Header } from "./Header";
 import { Content } from "./Content";
+import { Navleft } from "./Navleft";
+import { Navright } from "./Navright";
 export function Layout() {
   return (
     <Box
@@ -20,18 +22,19 @@ export function Layout() {
         `,
       }}
       gap={4}
+      bg="#F0F2F5"
     >
       <Box gridArea="header" bg="white" color="black" p={4} boxShadow="sm">
         <Header />
       </Box>
-      <Box gridArea="left" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>
-        Right
+      <Box gridArea="left" color="black" p={4} display={{ base: "none", lg: "block" }}>
+        <Navleft />
       </Box>
-      <Box gridArea="content" bg="#F0F2F5">
+      <Box gridArea="content" p={4}>
         <Content />
       </Box>
-      <Box gridArea="right" bg="#F0F2F5" color="black" p={4} display={{ base: "none", lg: "block" }}>
-        Left
+      <Box gridArea="right" color="black" p={4} display={{ base: "none", lg: "block" }}>
+        <Navright />
       </Box>
     </Box>
   );
