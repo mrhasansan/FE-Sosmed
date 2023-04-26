@@ -1,7 +1,9 @@
 import { Grid, GridItem, Box, FormControl, FormLabel, Input, Button, Stack, Text, Container, Divider, Modal, ModalOverlay, ModalBody, ModalHeader, ModalContent, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Register } from "./Register";
+import Axios from "axios";
+import { API_URL } from "../Helper";
 
 interface RegisterFormProps {
   email: string;
@@ -21,6 +23,7 @@ export function Login() {
     setPassword(event.target.value);
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData: RegisterFormProps = {
@@ -29,6 +32,23 @@ export function Login() {
     };
     console.log(formData);
     // lakukan pengiriman data ke server atau proses selanjutnya
+
+    Axios.post(API_URL + `/users/login`, {
+      email,
+      password,
+    })
+      .then((response) => {
+        console.log(response.data);
+        localStorage.setItem("sosmed", response.data.token);
+        navigate("/home", { replace: true });
+      })
+      .catch((err) => {
+        if (!err.response.data.success) {
+          alert(err.response.data.message);
+        }
+        console.log("check error", err);
+        console.log(err);
+      });
   };
 
   return (
@@ -58,7 +78,7 @@ export function Login() {
                 <Input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
               </FormControl>
               <Button type="submit" mt={5} colorScheme="blue" size="lg" w="100%">
-                <NavLink to="/home">Log in</NavLink>
+                Log in
               </Button>
             </form>
             <Divider orientation="horizontal" />

@@ -33,6 +33,10 @@ const router = createBrowserRouter([
     path: "profile",
     element: <Profile />,
   },
+  {
+    path: "chat",
+    element: <Chat />,
+  },
 ]);
 function App() {
   return (
