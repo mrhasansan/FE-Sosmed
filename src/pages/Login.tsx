@@ -1,9 +1,8 @@
 import { Grid, GridItem, Box, FormControl, FormLabel, Input, Button, Stack, Text, Container, Divider, Modal, ModalOverlay, ModalBody, ModalHeader, ModalContent, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { Register } from "./Register";
-import Axios from "axios";
-import { API_URL } from "../Helper";
+import { LoginContext } from "../contexts/LoginContext";
 
 interface RegisterFormProps {
   email: string;
@@ -24,31 +23,40 @@ export function Login() {
   };
 
   const navigate = useNavigate();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData: RegisterFormProps = {
-      email,
-      password,
-    };
-    console.log(formData);
-    // lakukan pengiriman data ke server atau proses selanjutnya
 
-    Axios.post(API_URL + `/users/login`, {
-      email,
-      password,
-    })
-      .then((response) => {
-        console.log(response.data);
-        localStorage.setItem("sosmed", response.data.token);
-        navigate("/home", { replace: true });
-      })
-      .catch((err) => {
-        if (!err.response.data.success) {
-          alert(err.response.data.message);
-        }
-        console.log("check error", err);
-        console.log(err);
-      });
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData: RegisterFormProps = {
+  //     email,
+  //     password,
+  //   };
+  //   console.log(formData);
+  //   // lakukan pengiriman data ke server atau proses selanjutnya
+
+  //   Axios.post(API_URL + `/users/login`, {
+  //     email,
+  //     password,
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       localStorage.setItem("sosmed", response.data.token);
+  //       navigate("/home", { replace: true });
+  //     })
+  //     .catch((err) => {
+  //       if (!err.response.data.success) {
+  //         alert(err.response.data.message);
+  //       }
+  //       console.log("check error", err);
+  //       console.log(err);
+  //     });
+  // };
+  const { loggedIn, handleLogin } = useContext(LoginContext);
+  const handleLoginFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin(email, password);
+    if (loggedIn) {
+      navigate("/home", { replace: true });
+    }
   };
 
   return (
@@ -68,7 +76,7 @@ export function Login() {
       <GridItem height="auto">
         <Box maxW={{ base: "md", md: "lg", lg: "xl" }} mx="auto" mt={6} p={{ base: 4, md: 6, lg: 8 }}>
           <Stack spacing={4} padding="8" bg="white" borderWidth={1} borderRadius={8}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLoginFormSubmit}>
               <FormControl isRequired mt={3}>
                 <FormLabel htmlFor="email">Email:</FormLabel>
                 <Input type="email" id="email" placeholder="Email Address" value={email} onChange={handleEmailChange} />

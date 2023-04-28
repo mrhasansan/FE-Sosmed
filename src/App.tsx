@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
 import { Post } from "./pages/Post";
 import { Chat } from "./pages/Chat";
+import { LoginProvider } from "./contexts/LoginContext";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ChakraProvider>
-      <RouterProvider router={router} />
+      <LoginProvider>
+        <RouterProvider router={router} />
+      </LoginProvider>
     </ChakraProvider>
   );
 }

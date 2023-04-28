@@ -22,15 +22,24 @@ import {
 } from "@chakra-ui/react";
 import { FaFacebook, FaHome, FaYoutube, FaUsers, FaFacebookMessenger, FaBell, FaSignOutAlt } from "react-icons/fa";
 import { AiOutlineShop, AiOutlineSearch } from "react-icons/ai";
-import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useState, useContext } from "react";
 import { Chat } from "../pages/Chat";
+import { LoginContext } from "../contexts/LoginContext";
 
 export function Header() {
   const [showInput, setShowInput] = useState(false);
 
   const handleClick = () => {
     setShowInput(!showInput);
+  };
+
+  const { user, handleLogout } = useContext(LoginContext);
+
+  const navigate = useNavigate();
+  const handleLogoutClick = () => {
+    handleLogout();
+    navigate("/", { replace: true });
   };
   return (
     <div>
@@ -90,6 +99,7 @@ export function Header() {
               </Link>
             </Button>
             <Menu>
+              {user && <p>{user.userName}</p>}
               <MenuButton as={Button} colorScheme="transparant">
                 <Avatar size="sm" name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
               </MenuButton>
@@ -104,11 +114,13 @@ export function Header() {
                 <MenuGroup title="Help">
                   <MenuItem>Docs</MenuItem>
                   <MenuItem>
-                    <NavLink style={{ color: "black" }} className="ps-0" to="/login">
-                      <Box display="flex">
-                        <FaSignOutAlt size={24} /> <span className="m-2">Logout</span>
-                      </Box>
-                    </NavLink>
+                    {user && (
+                      <>
+                        <FaSignOutAlt size={24} />
+                        <span onClick={handleLogoutClick}>Logout</span>
+                      </>
+                    )}
+                    <Box display="flex"></Box>
                   </MenuItem>
                   <MenuItem>FAQ</MenuItem>
                 </MenuGroup>
