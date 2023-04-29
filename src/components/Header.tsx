@@ -25,7 +25,7 @@ import { AiOutlineShop, AiOutlineSearch } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Chat } from "../pages/Chat";
-import { LoginContext } from "../contexts/LoginContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 export function Header() {
   const [showInput, setShowInput] = useState(false);
@@ -34,7 +34,7 @@ export function Header() {
     setShowInput(!showInput);
   };
 
-  const { user, handleLogout } = useContext(LoginContext);
+  const { user, handleLogout } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const handleLogoutClick = () => {

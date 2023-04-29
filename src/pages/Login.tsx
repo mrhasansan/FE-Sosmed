@@ -2,7 +2,7 @@ import { Grid, GridItem, Box, FormControl, FormLabel, Input, Button, Stack, Text
 import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { Register } from "./Register";
-import { LoginContext } from "../contexts/LoginContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 interface RegisterFormProps {
   email: string;
@@ -50,7 +50,7 @@ export function Login() {
   //       console.log(err);
   //     });
   // };
-  const { loggedIn, handleLogin } = useContext(LoginContext);
+  const { loggedIn, handleLogin } = useContext(AuthContext);
   const handleLoginFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleLogin(email, password);

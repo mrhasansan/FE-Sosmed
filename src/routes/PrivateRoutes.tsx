@@ -1,9 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { LoginContext } from "../contexts/LoginContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 
 const PrivateRoutes = () => {
-  const { user } = useContext(LoginContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
   const isLoggedIn = user && user.token;
 

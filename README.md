@@ -1,4 +1,4 @@
-## MySocial Media Clone (Facebook)
+# MySocial Media Clone (Facebook)
 
 This project is a clone of the Facebook social media platform, built using React, TypeScript, Vite, and Chakra UI.
 

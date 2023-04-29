@@ -1,13 +1,14 @@
 import { ChakraProvider } from "@chakra-ui/react";
+
 import RouteApp from "./routes/RouteApp";
-import { LoginProvider } from "./contexts/LoginContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <ChakraProvider>
-      <LoginProvider>
+      <AuthProvider>
         <RouteApp />
-      </LoginProvider>
+      </AuthProvider>
     </ChakraProvider>
   );
 }

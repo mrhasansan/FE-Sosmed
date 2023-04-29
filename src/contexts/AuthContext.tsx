@@ -7,7 +7,7 @@ interface User {
   token: string;
 }
 
-interface LoginProviderProps {
+interface AuthProviderProps {
   children: React.ReactNode;
 }
 
@@ -19,15 +19,15 @@ interface LoginContextType {
   handleLogout: () => void;
 }
 
-export const LoginContext = createContext<LoginContextType>({
+export const AuthContext = createContext<AuthContextType>({
   loggedIn: false,
-  setLoggedIn: () => {},
+  setLoggedIn: () => { },
   user: null,
   handleLogin: () => Promise.resolve(),
-  handleLogout: () => {},
+  handleLogout: () => { },
 });
 
-export const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
@@ -63,5 +63,5 @@ export const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
     handleLogout,
   };
 
-  return <LoginContext.Provider value={contextValue}>{children}</LoginContext.Provider>;
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
