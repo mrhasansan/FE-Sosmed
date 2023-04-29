@@ -2,7 +2,7 @@ import { Box, IconButton, Text, Card, CardHeader, Flex, Avatar, Heading, CardBod
 import { FaShare, FaRegCommentAlt } from "react-icons/fa";
 import { AiFillLike, AiOutlineMore } from "react-icons/ai";
 
-import { Post } from "../routes/Post";
+import { Post } from "../components/Post";
 
 export function Content(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();

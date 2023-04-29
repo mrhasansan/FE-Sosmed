@@ -1,9 +1,23 @@
 import { Box } from "@chakra-ui/react";
-import { Header } from "./Header";
-import { Content } from "./Content";
-import { Navleft } from "./Navleft";
-import { Navright } from "./Navright";
-export function Layout() {
+
+import { Header } from "../components/Header";
+import { Content } from "../components/Content";
+import { Navleft } from "../components/Navleft";
+import { Navright } from "../components/Navright";
+
+import { ActionFunctionArgs, redirect } from "react-router-dom";
+import axios from "axios";
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const data = { body: String(formData.get("body")) };
+  const response = await axios.post("https://jsonplaceholder.typicode.com/posts", data);
+
+  // FIXME: implement post route, the route itself can retrieve the param
+  return redirect(`/posts/${response.data.id}`);
+}
+
+export function Home() {
   return (
     <Box
       display="grid"

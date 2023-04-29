@@ -2,12 +2,12 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { AuthProvider } from "./contexts/AuthContext";
-import { Layout } from "./components/Layout";
+
+import { Home, action as actionHome } from "./routes/Home";
 import { Register } from "./routes/Register";
 import { ErrorPage } from "./routes/ErrorPage";
 import { Login } from "./routes/Login";
 import { Profile } from "./routes/Profile";
-import { Post } from "./routes/Post";
 import { Private } from "./routes/Private";
 
 const router = createBrowserRouter([
@@ -17,24 +17,19 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "register",
+    path: "/register",
     element: <Register />,
   },
   {
     element: <Private />,
     children: [
       {
-        path: "home",
-        element: <Layout />,
-        children: [
-          {
-            path: "post",
-            element: <Post />,
-          },
-        ],
+        path: "/home",
+        element: <Home />,
+        action: actionHome
       },
       {
-        path: "profile",
+        path: "/profile",
         element: <Profile />,
       },
     ],
