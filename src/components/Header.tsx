@@ -24,23 +24,24 @@ import { FaFacebook, FaHome, FaYoutube, FaUsers, FaFacebookMessenger, FaBell, Fa
 import { AiOutlineShop, AiOutlineSearch } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useContext } from "react";
-import { Chat } from "../pages/Chat";
-import { AuthContext } from "../contexts/AuthContext";
+
+import { Chat } from "../components/Chat";
+import { useAuth } from "../contexts/useAuth";
 
 export function Header() {
   const [showInput, setShowInput] = useState(false);
+  const { user, handleLogout } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setShowInput(!showInput);
   };
 
-  const { user, handleLogout } = useContext(AuthContext);
-
-  const navigate = useNavigate();
   const handleLogoutClick = () => {
     handleLogout();
     navigate("/", { replace: true });
   };
+
   return (
     <div>
       <Grid templateColumns="1fr 2fr 1fr" bg="white">

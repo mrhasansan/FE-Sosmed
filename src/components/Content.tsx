@@ -1,7 +1,8 @@
 import { Box, IconButton, Text, Card, CardHeader, Flex, Avatar, Heading, CardBody, Image, Button, CardFooter, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, useDisclosure, Divider } from "@chakra-ui/react";
 import { FaShare, FaRegCommentAlt } from "react-icons/fa";
 import { AiFillLike, AiOutlineMore } from "react-icons/ai";
-import { Post } from "../pages/Post";
+
+import { Post } from "../routes/Post";
 
 export function Content(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
