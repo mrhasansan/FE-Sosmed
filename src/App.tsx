@@ -1,9 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
-
-import { AuthProvider } from "./contexts/AuthContext";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { AuthProvider } from "./contexts/AuthContext";
 import { Layout } from "./components/Layout";
 import { Register } from "./routes/Register";
 import { ErrorPage } from "./routes/ErrorPage";
@@ -43,18 +41,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-function RouteApp() {
-  return <RouterProvider router={router} />;
-}
-
-function App() {
+export default function App() {
   return (
     <ChakraProvider>
       <AuthProvider>
-        <RouteApp />
+        <RouterProvider router={router} />
       </AuthProvider>
     </ChakraProvider>
   );
 }
-
-export default App;
